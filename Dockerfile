@@ -25,7 +25,7 @@ ENV HOME=/opt/app
 
 WORKDIR $HOME
 # 最终镜像中，静态页面文件位于 /opt/app/dist 目录下。
-COPY --from=build /opt/frontend dist
+COPY --from=build /opt/frontend/out dist
 
 COPY nginx /etc/nginx/conf.d
 
