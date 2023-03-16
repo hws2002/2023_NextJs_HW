@@ -42,12 +42,32 @@ const ListScreen = (props: ListScreenProps) => {
     };
     const deleteBoard = (id: number) => {
         // Step 6 BEGIN
-
+        // 1. Delete the board from the server
+        request(`/api/boards/${id}`, "DELETE")
+            .then((res) => {
+                //2-1. If the board is deleted successfully, refresh the list, and pop up a success message
+                fetchList();
+                alert(DELETE_SUCCESS);
+            })
+            .catch((err) => {
+                //2-2. If the board is not deleted successfully, pop up a failure message
+                alert(FAILURE_PREFIX + err);
+            });
         // Step 6 END
     };
     const deleteUserBoard = () => {
         // Step 6 BEGIN
-
+        // 1. Delete all boards of the user from the server
+        request(`/api/user/${props.userName}`, "DELETE")
+            .then((res) => {
+                // 2-1. If all boards are deleted successfully, refresh the list, and pop up a success message
+                alert(DELETE_USER_BOARD_SUCCESS);
+                router.push("/list");
+            })
+            .catch((err) => {
+                // 2-2. If boards are not deleted successfully, pop up a failure message
+                alert(FAILURE_PREFIX + err)
+            });
         // Step 6 END
     };
 
@@ -76,7 +96,33 @@ const ListScreen = (props: ListScreenProps) => {
             ) : (
                 <div style={{ display: "flex", flexDirection: "column" }}>{
                     // Step 5 BEGIN
+                    boardList.map((val) => (
+                        <div key={val.id} style={{ display: "flex", flexDirection: "column" }}>
+                            <p> ID: {val.id} <br></br>
+                                Name: {val.name} <br></br>
+                                Created at: {val.createdAt}<br></br>
+                                Created by: {val.userName} <br></br>
+                            <div style={{display:"flex",flexDirection:"row"}}>
+                                <button onClick={() => router.push({
+                                                        pathname : `/${val.id}`,
+                                                        })
+                                }
+                                >
+                                    Play it
+                                </button>
+                                <button onClick = {()=>deleteBoard(val.id)}>
+                                    Delete it 
+                                </button>
+                                <button onClick={() => router.push({
+                                                    pathname : `/list/${val.userName}`,
 
+                                                    })}>
+                                    View this user
+                                </button>
+                            </div>
+                            </p>
+                        </div>
+                    ))
                     // Step 5 END
                 }</div>
             )}
