@@ -50,7 +50,36 @@ export const stepBoard = (board: Board): Board => {
      * @note 你可以使用命令 yarn test step 来运行我们编写的单元测试与我们提供的参考实现对拍
      */
     // Step 1 BEGIN
-    
+    for(let i = 0; i<BOARD_LENGTH;i++){
+        newBoard.push([]);
+        for(let j = 0 ;j<BOARD_LENGTH;j++){
+        // 1. Survey its surroundings
+            let Counter = 0;
+            const left = (j-1+BOARD_LENGTH)%BOARD_LENGTH; 
+            const right = (j+1)%BOARD_LENGTH;
+            const up = (i-1+BOARD_LENGTH)%BOARD_LENGTH;
+            const down = (i+1)%BOARD_LENGTH;
+            const Surroundings = [
+                [up,left],[up,j],[up,right],
+                [i,left],         [i,right],
+                [down,left],[down,j],[down,right],
+            ];
+            Surroundings.forEach((pos)=>{
+                if(board[pos[0]][pos[1]] ===1){
+                    Counter++;
+                }
+            });
+        // 2. Decide its next status under current status and number of alive cells around it
+        const Status_Quo = board[i][j];
+            if( Status_Quo === 0){ //Dead
+                if(Counter === 3) newBoard[i].push(1);
+                else newBoard[i].push(0);
+            }  else { //Alive
+                if(Counter ===2 || Counter ===3) newBoard[i].push(1);
+                else newBoard[i].push(0);
+            }
+        }
+    }
     // Step 1 END
 
     return newBoard;
