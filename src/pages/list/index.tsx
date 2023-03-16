@@ -66,7 +66,7 @@ const ListScreen = (props: ListScreenProps) => {
             })
             .catch((err) => {
                 // 2-2. If boards are not deleted successfully, pop up a failure message
-                alert(FAILURE_PREFIX + err)
+                alert(FAILURE_PREFIX + err);
             });
         // Step 6 END
     };
