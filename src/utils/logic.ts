@@ -69,8 +69,8 @@ export const stepBoard = (board: Board): Board => {
                     Counter++;
                 }
             });
-        // 2. Decide its next status under current status and number of alive cells around it
-        const Status_Quo = board[i][j];
+            // 2. Decide its next status under current status and number of alive cells around it
+            const Status_Quo = board[i][j];
             if( Status_Quo === 0){ //Dead
                 if(Counter === 3) newBoard[i].push(1);
                 else newBoard[i].push(0);

@@ -96,33 +96,27 @@ const ListScreen = (props: ListScreenProps) => {
             ) : (
                 <div style={{ display: "flex", flexDirection: "column" }}>{
                     // Step 5 BEGIN
-                    boardList.map((val) => (
-                        <div key={val.id} style={{ display: "flex", flexDirection: "column" }}>
-                            <p> ID: {val.id} <br></br>
-                                Name: {val.name} <br></br>
-                                Created at: {val.createdAt}<br></br>
-                                Created by: {val.userName} <br></br>
-                            <div style={{display:"flex",flexDirection:"row"}}>
-                                <button onClick={() => router.push({
-                                                        pathname : `/${val.id}`,
-                                                        })
-                                }
-                                >
+                    boardList.map((board) => {
+                        var date = new Date(board.createdAt * 1000);
+                        var createdTime = date.toLocaleString("zh-CN");
+                        return (
+                            <div key = {board.id} style={{ padding: 8 }}>
+                                <div>ID: {board.id}</div>
+                                <div>Name: {board.name}</div>
+                                <div>Created at: {createdTime}</div>
+                                <div>Created by: {board.userName}</div>
+                                <button onClick={() => router.push("/" + board.id)}>
                                     Play it
                                 </button>
-                                <button onClick = {()=>deleteBoard(val.id)}>
-                                    Delete it 
+                                <button onClick={() => deleteBoard(board.id)}>
+                                    Delete it
                                 </button>
-                                <button onClick={() => router.push({
-                                                    pathname : `/list/${val.userName}`,
-
-                                                    })}>
+                                <button onClick={() => router.push("/list/" + board.userName)}>
                                     View this user
                                 </button>
                             </div>
-                            </p>
-                        </div>
-                    ))
+                        );
+                    })
                     // Step 5 END
                 }</div>
             )}
