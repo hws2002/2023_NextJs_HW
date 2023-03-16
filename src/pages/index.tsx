@@ -47,8 +47,8 @@ const BoardScreen = (props: BoardScreenProps) => {
         // Turn on AutoPlay mode and set Timer
         setAutoPlay(true);
         timerRef.current = setInterval(()=>{
-            setBoard((board)=>stepBoard(board))}
-        ,500)
+            setBoard((board)=>stepBoard(board));}
+        ,500);
         // Step 4 END
     };
     const stopAutoPlay = () => {
