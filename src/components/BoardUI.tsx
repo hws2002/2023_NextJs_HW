@@ -30,9 +30,9 @@ const BoardUI = (props: BoardUIProps) => {
         rowList.push(
             // Step 2 BEGIN
             <div style={{ display: "flex", flexDirection: "row" }} key = {i} > 
-            {
-            cellList
-            }
+                {
+                    cellList
+                }
             </div>
             // Step 2 END
         );
