@@ -91,7 +91,9 @@ export const flipCell = (board: Board, i: number, j: number): Board => {
      * @note 你可以使用命令 yarn test flip 来运行我们编写的单元测试以检验自己的实现
      */
     // Step 3 BEGIN
-
+    let Newboard = board.map((row)=>row.slice());
+    Newboard[i][j] = Newboard[i][j] === 0 ? 1 : 0;
+    return Newboard;
     // Step 3 END
 
     /**

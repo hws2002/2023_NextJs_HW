@@ -35,7 +35,10 @@ const BoardScreen = (props: BoardScreenProps) => {
     };
     const flip = (i: number, j: number) => {
         // Step 3 & 4 BEGIN
-
+        // if AutoPlay mode is on, do nothing
+        if(!autoPlay)
+        // update board state by calling flipCell
+        setBoard((board) => flipCell(board,i,j));
         // Step 3 & 4 END
     };
 

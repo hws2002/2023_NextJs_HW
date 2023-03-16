@@ -21,7 +21,7 @@ const BoardUI = (props: BoardUIProps) => {
             cellList.push(
                 <div onClick={() => props.flip(i, j)} key={j}>
                     {/* Step 2 BEGIN */}
-
+                    <Square key = {i*BOARD_LENGTH + j} color = {props.board[i][j]=== 0? "white" : "red"}/>
                     {/* Step 2 END */}
                 </div>
             );
@@ -29,7 +29,11 @@ const BoardUI = (props: BoardUIProps) => {
 
         rowList.push(
             // Step 2 BEGIN
-
+            <div style={{ display: "flex", flexDirection: "row" }} key = {i} > 
+                {
+                cellList
+                }
+            </div>
             // Step 2 END
         );
     }
