@@ -25,9 +25,6 @@ build:
     # - yarn install -i https://registry.npmmirror.com -r requirements.txt
     - yarn config set registry https://registry.npmmirror.com
     - yarn install
-
-
-
     
 unit-test:
   extends: .test
